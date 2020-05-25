@@ -14,6 +14,8 @@ This workshop requires packages: **readr, pscl, caret, stats.**
 
 ## Presentation
 
+Here are the links for the presentation: 
+
 [Linear Regression](https://docs.google.com/presentation/d/1Zb_vtiNeen3doYEAcxVEBulSHtrtxuGTonc4binRcq4/edit?usp=sharing)
 
 [Logistic Regression](https://docs.google.com/presentation/d/1uX_G2o2ImeTtNEgLNodvLOS1EJfdfTl9L_50143L-ig/edit?usp=sharing)
