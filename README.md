@@ -14,7 +14,7 @@ This workshop requires packages: **readr, pscl, caret, stats.**
 
 ## Presentation
 
-Here are the links for the presentation: 
+I will be lecturing while live coding. Links to the presentation are given below:
 
 - [Linear Regression](https://docs.google.com/presentation/d/1Zb_vtiNeen3doYEAcxVEBulSHtrtxuGTonc4binRcq4/edit?usp=sharing)
 - [Logistic Regression](https://docs.google.com/presentation/d/1uX_G2o2ImeTtNEgLNodvLOS1EJfdfTl9L_50143L-ig/edit?usp=sharing)
@@ -23,11 +23,12 @@ Here are the links for the presentation:
 
 ## Code associated with Presentation
 
-There will be live coding during the presentation. I will be using the following markdown files without code filled in:
+For the live coding portion, I will be using the following markdown files without code filled in:
 
 - [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code.Rmd)
 - [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code.Rmd)
 - [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code.Rmd)
+
 
 For access to markdown file with the code filled in, see the following links:
 
