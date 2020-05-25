@@ -15,20 +15,25 @@ This workshop requires packages: **readr, pscl, caret, stats.**
 ## Presentation
 
 [Linear Regression](https://docs.google.com/presentation/d/1Zb_vtiNeen3doYEAcxVEBulSHtrtxuGTonc4binRcq4/edit?usp=sharing)
+
 [Logistic Regression](https://docs.google.com/presentation/d/1uX_G2o2ImeTtNEgLNodvLOS1EJfdfTl9L_50143L-ig/edit?usp=sharing)
+
 [Poisson Regression](https://docs.google.com/presentation/d/1ekGkc1_LzPDJnCbQMjMu_Gt5vYSK6mtMD6H1hegM2JE/edit?usp=sharing)
+
 
 ## Code associated with Presentation
 
-Markdown file without code filled in.
-[Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code.Rmd)
-[Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code.Rmd)
-[Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code.Rmd)
+Markdown file without code filled in:
 
-Markdown file with the code filled in.
-[Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code_completed.Rmd)
-[Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code_completed.Rmd)
-[Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code_completed.Rmd)
+- [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code.Rmd)
+- [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code.Rmd)
+- [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code.Rmd)
+
+Markdown file with the code filled in:
+
+- [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code_completed.Rmd)
+- [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code_completed.Rmd)
+- [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code_completed.Rmd)
 
 ## Downloading Files
 
