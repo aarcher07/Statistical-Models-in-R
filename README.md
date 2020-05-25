@@ -66,7 +66,7 @@ You can download all of the files by clicking the green button ("Clone or downlo
 
 ## Resources
 
-See [Resources](https://github.com/nuitrcs/pythonworkshops/blob/master/resources.md) for a listing of general Python resources, tutorials, and reference materials.  Links below relate specifically to material covered in this workshop.
+See [Resources](https://github.com/nuitrcs/pythonworkshops/blob/master/resources.md) for a listing of general R resources, tutorials, and reference materials.  Links below relate specifically to material covered in this workshop.
 
 [Linear models in R](https://data.princeton.edu/R/linearModels): this is brief dicussion of linear models in R. There is also another tab on GLMs.
 
