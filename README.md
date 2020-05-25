@@ -23,31 +23,21 @@ Here are the links for the presentation:
 
 ## Code associated with Presentation
 
-Markdown file without code filled in:
+There will be live coding during the presentation. I will be using the following markdown files without code filled in:
 
 - [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code.Rmd)
 - [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code.Rmd)
 - [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code.Rmd)
 
-Markdown file with the code filled in:
+For access to markdown file with the code filled in, see the following links:
 
 - [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_code_completed.Rmd)
 - [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_code_completed.Rmd)
 - [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_code_completed.Rmd)
 
-## Downloading Files
+## Exercises
 
-### Recommended: Entire directory
-
-You can download all of the files by clicking the green button ("Clone or download") above and choosing "Download ZIP."
-
-### Individual Files
-
-**If you download files from the links above, you have to click through to the RAW version of the R markdown files and download that.  If you download directly from the links above, the files won't open because they are web pages, not the raw files.**
-
-### Downloading Exercises
-
-To download just the exercise files, right-click on the links below, and choose Save Link As (or the similar option in your browser).  Make sure to choose All file types as the content type, and remove any .txt or similar extensions from the file when you save it.
+After the presentation, here are exercises that I wrote for attendees to get more practice. 
 
 Exercises without answers:
 
@@ -60,6 +50,18 @@ Exercises with answers:
 - [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_exercises_solution.Rmd)
 - [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_exercises_solution.Rmd)
 - [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_exercises_solution.Rmd)
+
+The exercises should follow directly from the workshop.
+
+## Downloading Files
+
+### Recommended: Entire directory
+
+You can download all of the files by clicking the green button ("Clone or download") above and choosing "Download ZIP."
+
+### Individual Files
+
+**If you download files from the links above, you have to click through to the RAW version of the R markdown files and download that.  If you download directly from the links above, the files won't open because they are web pages, not the raw files.**
 
 ## Resources
 
