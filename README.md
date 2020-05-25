@@ -47,12 +47,19 @@ You can download all of the files by clicking the green button ("Clone or downlo
 
 ### Downloading Exercises
 
-To download just the exercise files, right-click on the links below, and choose Save Link As (or the similar option in your browser).  Make sure to choose All file types as the content type (or .ipynb if available), and remove any .txt or similar extensions from the file when you save it.  The files should be *.ipynb files, with no additional file type extensions.
+To download just the exercise files, right-click on the links below, and choose Save Link As (or the similar option in your browser).  Make sure to choose All file types as the content type, and remove any .txt or similar extensions from the file when you save it.
 
-[Exercises WITHOUT Answers](https://raw.githubusercontent.com/emiliolehoucq/stats-modeling-in-R/master/exercises.md)
+Exercises without answers:
 
-[Exercises WITH Answers](https://raw.githubusercontent.com/emiliolehoucq/stats-modeling-in-R/master/solutions_to_exercises.R)
+- [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_exercises.Rmd)
+- [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_exercises.Rmd)
+- [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_exercises.Rmd)
 
+Exercises with answers:
+
+- [Linear Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/linear_model_exercises_solution.Rmd)
+- [Logistic Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/logistic_model_exercises_solution.Rmd)
+- [Poisson Model](https://raw.githubusercontent.com/aarcher07/stats_models/master/poisson_model_exercises_solution.Rmd)
 
 ## Resources
 
