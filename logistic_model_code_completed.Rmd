@@ -1,0 +1,192 @@
+---
+title: "Logistic Regression Code"
+output: html_document
+---
+
+# Load and Format data
+Here, we read and format data.
+```{r}
+library("readr")
+avocado_df<-read_csv('avocado_df_categories.csv')
+avocado_df$PriceCategory <- factor(avocado_df$PriceCategory, levels= c("Cheap","Expensive"),labels=c(0,1))
+avocado_df$TotalVolume <- as.numeric(avocado_df$TotalVolume) 
+avocado_df$Type <- as.factor(avocado_df$Type) 
+avocado_df$Region <- as.factor(avocado_df$Region) 
+avocado_df$Month <- as.factor(avocado_df$Month) 
+avocado_df$Year <- as.factor(avocado_df$Year) 
+```
+
+# Summary of Data
+
+```{r}
+head(avocado_df)
+```
+
+```{r}
+summary(avocado_df)
+```
+
+# Logistic Regression in R
+
+## Total Volume + Constant Term
+
+We will now build a logistic model with a constant term and a TotalVolume term.
+
+```{r}
+model_volume <-glm(PriceCategory ~ 1 + TotalVolume, data = avocado_df,family = 'binomial')
+```
+### Model Summary
+
+```{r}
+summary(model_volume)
+```
+
+You can also get the coefficents of the model.
+
+```{r}
+print(coef(model_volume))
+```
+
+
+### Predicting Class Probabilities
+```{r}
+log_odds <- predict.glm(model_volume, data.frame(TotalVolume=15.0))
+print(log_odds)
+```
+
+```{r}
+probs <- exp(log_odds)/(1+ exp(log_odds))
+print(probs)
+```
+
+### Getting Class Probabilities of Data
+
+We can get the probability estimates of the model.
+```{r}
+probabilities <- model_volume$fitted.values
+print(head(probabilities))
+```
+
+```{r}
+print(avocado_df$PriceCategory)
+```
+
+
+
+### Predicting Class from Class Probabilities
+
+Using a threshold value and the probabilities, we can assign classes to each observation.
+
+### Predicting Classes
+
+```{r}
+predicted_classes = as.numeric(probabilities > 0.5)
+print(predicted_classes)
+```
+Let's see our actual classes.
+```{r}
+print(avocado_df$PriceCategory)
+```
+
+### Confusion Matrix
+
+We can calculate the error in our prediction.
+```{r}
+library(caret)
+confusionMatrix(data=factor(predicted_classes),reference=avocado_df$PriceCategory)
+```
+
+## Model with Constant Term
+
+We will now build a logistic model with a constant term.
+
+```{r}
+model_constant <-glm(PriceCategory ~ 1, data = avocado_df,family = 'binomial')
+```
+### Model Summary
+
+```{r}
+summary(model_constant)
+```
+## Model Comparison
+
+We can compare models using the anova function.
+
+```{r}
+anova(model_constant, model_volume, test='Chisq')
+```
+
+
+
+## Model with Volume and Type 
+
+### Create Model
+```{r}
+model_volume_type <- glm(PriceCategory ~ 1 + TotalVolume + Type, data=avocado_df, family='binomial')
+```
+
+### Model Summary
+
+```{r}
+summary(model_volume_type)
+```
+
+### Predicting Class Probabilities
+```{r}
+log_odds <- predict.glm(model_volume_type, data.frame(TotalVolume=c(15.0,5.0), Type=c("conventional","organic")))
+print(log_odds)
+```
+
+```{r}
+probs <- exp(log_odds)/(1+ exp(log_odds))
+print(probs)
+```
+
+### Class Probabilities
+
+We can get the probability estimates of the model.
+```{r}
+probabilities = model_volume_type$fitted.values
+print(head(probabilities))
+```
+
+
+```{r}
+print(head(avocado_df$PriceCategory))
+```
+
+### Predicting Class from Class Probabilities
+
+Using a threshold value and the probabilities, we can assign classes to each observation.
+
+### Predicting Classes
+
+```{r}
+predicted_classes = as.numeric(probabilities > 0.5)
+print(predicted_classes)
+```
+Let's see our actual classes.
+```{r}
+print(avocado_df$PriceCategory)
+```
+
+### Confusion Matrix
+
+We can calculate the error in our prediction.
+```{r}
+confusionMatrix(data=factor(predicted_classes),reference=avocado_df$PriceCategory)
+```
+
+### Anova with null model
+
+```{r}
+anova(model_constant, model_volume_type, test='Chisq')
+```
+
+### Anova with model with only volume
+
+```{r}
+anova( model_volume, model_volume_type, test='Chisq')
+```
+
+

@@ -1,0 +1,199 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+# Exercise 0
+
+0. Load data set avocado_df_categories.csv and run the code below to format the dataset. 
+```{r}
+library("readr")
+avocado_df<-read_csv('avocado_df_categories.csv')
+avocado_df$PriceCategory <- factor(avocado_df$PriceCategory, levels= c("Cheap","Expensive"),labels=c(0,1))
+avocado_df$TotalVolume <- as.numeric(avocado_df$TotalVolume) 
+avocado_df$Type <- as.factor(avocado_df$Type) 
+avocado_df$Month <- as.factor(avocado_df$Month) 
+avocado_df$Year <- as.factor(avocado_df$Year) 
+```
+# Exercise 1: Model with Price and Type Interaction
+
+1. Run the code below to create a logistic model with price and type interaction variable.
+
+```{r}
+#solution here
+
+model_volume_type_interaction <- glm(PriceCategory ~ 1 + TotalVolume*Type, data=avocado_df, family='binomial')
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+summary(model_volume_type_interaction)
+```
+3. Interpret the output of summary. What do the coefficients mean?
+
+1. Model for conventional avocado -- log(P/(1-P)) = 2.24 - 0.28 * TotalVolume
+
+When total demand is zero, the log odds is 2.24. If total volume increases by 1, the log odds decrease by -0.28.
+
+2. Model for organic avocado -- log(P/(1-P))= 3.53 - 0.23 * TotalVolume
+
+When total demand is zero, the log odds is 2.24. If total volume increases by 1, the log odds decrease by -0.28.
+
+
+4. What are the predicted probabilities for the dataset, df, below?
+
+```{r}
+df = data.frame(TotalVolume=c(15.0,5.0), Type=c("conventional","organic"))
+```
+
+```{r}
+#solution here
+
+log_odds <-predict(model_volume_type_interaction,df)
+probs <- exp(log_odds)/(1+exp(log_odds))
+print(probs)
+```
+
+5. With a threshold value of 0.5, print the confusion matrix of the logistic model.
+
+```{r}
+library(caret)
+
+#solution here
+
+probabilities <- model_volume_type_interaction$fitted.values
+predicted_classes = as.numeric(probabilities > 0.5)
+print(predicted_classes)
+confusionMatrix(data=factor(predicted_classes),reference=avocado_df$PriceCategory, positive="1")
+```
+
+6. Compare the model with the null model. Is there a siginificant decrease in the deviance?
+
+```{r}
+#solution here
+
+model_constant <- glm(PriceCategory ~ 1, data=avocado_df, family='binomial')
+anova(model_constant, model_volume_type_interaction, test='Chisq')
+```
+
+7. Compare the model aganist the model with no interaction term between price and type. Is there a siginificant decrease in the deviance?
+
+```{r}
+#solution here
+
+model_volume_type <- glm(PriceCategory ~ 1 + TotalVolume + Type, data=avocado_df, family='binomial')
+anova(model_volume_type, model_volume_type_interaction, test='Chisq')
+```
+
+# Exercise 2: Model with Price, Type and Year.
+
+1. Create a model with price and type interaction variable.
+
+```{r}
+#solution here
+
+model_volume_type_year <- glm(PriceCategory ~ 1 + Year + Type + TotalVolume, data=avocado_df, family='binomial')
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+summary(model_volume_type_year)
+```
+3. Interpret the output of summary. What do the coefficients mean?
+
+i) If the sample is conventional and taken in 2015,
+
+log P/(1-P) =  1.91 -0.29*(Total Volume)
+
+When total demand is zero, the log odds is 1.91. If total volume increases by 1, the log odds decrease by -0.29.
+
+ii) If the sample is conventional and taken in 2016,
+
+log P/(1-P) = 1.84 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 1.84. If total volume increases by 1, the log odds decrease by -0.29.
+
+iii) If the sample is conventional and taken in 2017,
+
+log P/(1-P) =  2.11 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 1.91. If total volume increases by 1, the log odds decrease by -0.29.
+
+iv) If the sample is conventional and taken in 2018,
+
+log P/(1-P) = 2.17 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 2.17. If total volume increases by 1, the log odds decrease by -0.29.
+
+v) If the sample is organic and taken in 2015,
+
+log P/(1-P) = 3.85-0.29*(Total Volume)
+
+When total demand is zero, the log odds is 3.85. If total volume increases by 1, the log odds decrease by -0.29.
+
+vi) If the sample is organic and taken in 2016,
+
+log P/(1-P) =  3.78 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 3.78. If total volume increases by 1, the log odds decrease by -0.29.
+
+vii) If the sample is organic and taken in 2017,
+
+log P/(1-P) =  5.05 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 5.05. If total volume increases by 1, the log odds decrease by -0.29.
+
+viii) If the sample is organic and taken in 2018,
+
+log P/(1-P) =  5.11 - 0.29*(Total Volume)
+
+When total demand is zero, the log odds is 5.11. If total volume increases by 1, the log odds decrease by -0.29.
+
+4. What are the predicted probabilities for the dataset, df, below?
+
+```{r}
+#solution here
+
+df = data.frame(TotalVolume=c(12.0,10.0), Type=c("conventional","organic"), Year=c(2017,2015))
+log_odds <-predict(model_volume_type_interaction,df)
+probs <- exp(log_odds)/(1+exp(log_odds))
+print(probs)
+```
+
+5. With a threshold value of 0.5, print the confusion matrix of the logistic model.
+
+```{r}
+library(caret)
+
+#solution here
+
+probabilities <- model_volume_type_year$fitted.values
+predicted_classes = as.numeric(probabilities > 0.5)
+print(predicted_classes)
+confusionMatrix(data=factor(predicted_classes),reference=avocado_df$PriceCategory, positive="1")
+```
+
+6. Compare the model with the null model. Is there a siginificant decrease in the deviance?
+
+```{r}
+#solution here
+
+model_constant <- glm(PriceCategory ~ 1, data=avocado_df, family='binomial')
+anova(model_constant, model_volume_type_year, test='Chisq')
+```
+
+7. Compare the model aganist the model with no interaction term between price and type. Is there a siginificant decrease in the deviance?
+
+```{r}
+#solution here
+
+model_volume_type <- glm(PriceCategory ~ 1 + TotalVolume + Type, data=avocado_df, family='binomial')
+anova(model_volume_type, model_volume_type_year, test='Chisq')
+```

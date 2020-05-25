@@ -1,0 +1,125 @@
+---
+title: "linear_model_exercises"
+output: html_document
+---
+# Exercise 0:
+
+Load the library below.
+
+```{r}
+library(pscl)
+```
+## Exercise 1: Model with fem, ment_cat.
+
+As seen from the box plots in the presentation and below, the mean of the distributions for each ment might not be linear. 
+
+```{r}
+library(reshape2)
+```
+
+```{r}
+df.men <- melt(bioChemists[bioChemists$fem == "Men",c("ment","art")], id.var = "ment")
+
+ggplot(data = df.men, aes(x=ment, y=value)) +  geom_boxplot(aes(group=ment))
+```
+
+```{r}
+df.women <- melt(bioChemists[bioChemists$fem == "Women",c("ment","art")], id.var = "ment")
+ggplot(data = df.women, aes(x=ment, y=value)) +  geom_boxplot(aes(group=ment)) + ggtitle("Box plot of art vs ment for women")
+```
+
+0. It might be better to treat each ment numerical value as a category. Run the code below to create a new column with ment categories.
+
+```{r}
+bioChemists$ment_cat <- as.factor(bioChemists$ment)
+```
+
+1. Create a model with fem and ment_cat.
+
+```{r}
+#solution here
+
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+```
+
+3. Using ANOVA, compare this model to the model with only fem.
+
+```{r}
+#solution here
+
+
+```
+
+4. Is the model with ment_cat better than the model with ment?
+
+
+## Exercise 2: Model with fem, ment interaction
+
+1. Run the code below to create a model with  fem and ment interaction.
+
+```{r}
+#solution here
+
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+```
+
+3. Interpret the model.
+
+i) For men
+
+ii) For women
+
+4. Interpret the significance of effect of the interaction coefficient. 
+
+
+5. Compare the model with ment and sex interaction to the model with no interaction between ment and sex. 
+```{r}
+#solution here
+
+```
+
+## Exercise 3: Model with fem, ment, phd
+
+1. Run the code below to create a model with  fem, ment and phd.
+
+```{r}
+#solution here
+
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+```
+
+3. Interpret the model for each of the cases below
+
+i) For men
+
+ii) For women
+
+
+
+4. Interpret the significance of effect of the phd coefficient. 
+
+
+5. Compare the model with ment, sex and phd to the model with ment and sex only. 
+
+```{r}
+#solution here
+
+```

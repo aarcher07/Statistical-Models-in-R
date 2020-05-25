@@ -1,0 +1,159 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Exercise 0
+
+0. Load data set avocado_df.csv and run the code below to format the dataset. 
+```{r}
+library(readr)
+avocado_df<-read_csv('avocado_df.csv')
+```
+```{r}
+avocado_df$AveragePrice <- as.numeric(avocado_df$AveragePrice)
+avocado_df$TotalVolume <- as.numeric(avocado_df$TotalVolume) 
+avocado_df$Month <- as.factor(avocado_df$Month) 
+avocado_df$Type <- as.factor(avocado_df$Type) 
+avocado_df$Region <- as.factor(avocado_df$Region) 
+avocado_df$Year <- as.factor(avocado_df$Year) 
+```
+# Exercise 1
+
+
+1. Create a linear model of Price as a function of Total Volume and Year.
+
+```{r}
+# Solution here
+
+
+```
+2. Print the summary. Interpret the output.
+
+```{r}
+# Solution here
+
+
+```
+
+3a. Get the coefficients of the model and store them as "coefs".
+
+```{r}
+# Solution here
+
+
+```
+
+3b. Run the code below and understand what it is doing.
+
+```{r}
+plot(avocado_df$TotalVolume[avocado_df$Year==2015],avocado_df$AveragePrice[avocado_df$Year==2015], xlab= 'Total Volume', ylab = 'Average Price', col = 'black',xlim=c(4,19))
+points(avocado_df$TotalVolume[avocado_df$Year==2016],avocado_df$AveragePrice[avocado_df$Year==2016], xlab= 'Total Volume', ylab = 'Average Price', col = 'grey')
+points(avocado_df$TotalVolume[avocado_df$Year==2017],avocado_df$AveragePrice[avocado_df$Year==2017], xlab= 'Total Volume', ylab = 'Average Price', col = 'red')
+points(avocado_df$TotalVolume[avocado_df$Year==2018],avocado_df$AveragePrice[avocado_df$Year==2018], xlab= 'Total Volume', ylab = 'Average Price', col = 'blue')
+legend(x=15,y=3,legend=c('2015','2016','2017','2018'),col=c("black", "grey","red","blue"),pch=1)
+
+abline(coefs[1],coefs[2], col='black')
+abline(coefs[1]+coefs[3],coefs[2], col='grey')
+abline(coefs[1]+coefs[4],coefs[2], col='red')
+abline(coefs[1]+coefs[5],coefs[2], col='blue')
+```
+
+4a. Compare this model to the null model using ANOVA.
+
+```{r}
+model_constant <- lm(AveragePrice ~ 1 , data=avocado_df)
+# Solution here
+
+```
+
+4b. Compare this model to the model with total volume only using ANOVA.
+
+```{r}
+model_volume<- lm(AveragePrice ~ 1 + Volume, data=avocado_df)
+
+# Solution here
+
+```
+5. Predicted the price of the samples in "unknown_df".
+
+```{r}
+unknown_df <- data.frame(TotalVolume=c(15.0,5.0), Type = c("conventional","organic"), Year=c("2016","2015"))
+
+```
+
+# Exercise 2
+
+
+1. Create a linear model of Price as a function of Total Volume, Year, Type and Total Volume and Type interaction.
+
+```{r}
+# Solution here
+
+
+```
+
+2. Print the summary. Interpret the output.
+
+```{r}
+# Solution here
+
+
+```
+
+3. Get the coefficients of the model and store them as "coefs".
+
+```{r}
+# Solution here
+
+
+```
+
+4a. Compare this model to the null model using ANOVA.
+
+```{r}
+model_constant <- lm(AveragePrice ~ 1 , data=avocado_df)
+# Solution here
+
+```
+
+4b. Compare this model to the model with total volume only using ANOVA.
+
+```{r}
+model_volume<- lm(AveragePrice ~ 1 + TotalVolume, data=avocado_df)
+# Solution here
+
+```
+
+4c. Compare this model to the model with Total Volume and Type using ANOVA.
+
+```{r}
+model_volume_type <- lm(AveragePrice ~ 1 + TotalVolume + Type, data=avocado_df)
+# Solution here
+
+```
+
+4d. Compare this model to the model with Total Volume and Type interaction using ANOVA.
+
+```{r}
+model_volume_type_interaction <- lm(AveragePrice ~ 1 + TotalVolume*Type, data=avocado_df)
+# Solution here
+
+```
+
+4e. Compare this model to the model with Total Volume and Year using ANOVA.
+
+```{r}
+model_year <- lm(AveragePrice ~ 1 + Year, data=avocado_df)
+# Solution here
+
+
+```
+5. Predicted the price of the samples in "unknown_df".
+
+```{r}
+# Solution here
+unknown_df <- data.frame(TotalVolume=c(15.0,5.0), Type = c("conventional","organic"), Year=c("2016","2015"))
+
+```
+

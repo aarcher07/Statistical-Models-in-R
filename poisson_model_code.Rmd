@@ -1,0 +1,113 @@
+---
+title: "Poisson Regression Code"
+output: html_document
+---
+
+# Load and Format data
+Here, we read and format data.
+```{r}
+library("pscl")
+bioChemists$kid5 <- factor(bioChemists$kid5)
+```
+
+# Summary of Data
+
+```{r}
+# print head of dataset
+
+```
+
+```{r}
+# print summary of dataset
+
+
+```
+
+# Poisson Regression in R
+
+## Constant Term
+
+We will now build a logistic model with a constant term and a TotalVolume term.
+
+```{r}
+# model with constant term,  poisson(link = log))
+
+
+```
+### Model Summary
+
+```{r}
+# print model summary
+
+```
+
+You can also get the coefficents of the model.
+
+```{r}
+# print model coefs
+
+
+```
+
+## Model with Constant + Gender Term
+
+We will now build a Poisson model with a constant term and sex.
+
+```{r}
+# poisson glm with fem and constant, family = poisson(link = log)) as model_sex
+
+
+```
+### Model Summary
+
+```{r}
+# print model summary
+
+
+```
+## Model Comparison
+
+We can compare models using the anova function.
+
+```{r}
+
+# compare model_constant vs. model_sex
+
+
+```
+
+
+
+## Model with fem and ment 
+
+### Create Model
+```{r}
+# poisson glm with fem, constant, ment family = poisson(link = log)) as model_sex_ment
+
+```
+
+### Model Summary
+
+```{r}
+# print model summary
+
+```
+
+
+### Anova with null model
+
+```{r}
+
+# compare model_constant and model_sex_ment
+```
+
+### Anova with model with only sex
+
+```{r}
+# compare model_sex and model_sex_ment
+
+
+```
+
+
+

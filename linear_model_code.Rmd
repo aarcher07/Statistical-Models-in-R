@@ -1,0 +1,247 @@
+---
+title: "Linear Regression Code"
+output: html_document
+---
+
+# Load and Format data
+Here, we read and format data.
+```{r}
+library(readr)
+avocado_df<-read_csv('avocado_df.csv')
+avocado_df$AveragePrice <- as.numeric(avocado_df$AveragePrice)
+avocado_df$TotalVolume <- as.numeric(avocado_df$TotalVolume) 
+avocado_df$Month <- as.factor(avocado_df$Month) 
+avocado_df$Type <- as.factor(avocado_df$Type) 
+avocado_df$Region <- as.factor(avocado_df$Region) 
+avocado_df$Year <- as.factor(avocado_df$Year) 
+```
+
+# Summary of Data
+```{r}
+# head of data set
+
+```
+
+
+```{r}
+# summary of data set
+
+
+```
+
+
+# Linear Modeling in R
+
+## Constant Term
+
+### Model
+```{r}
+# store as model_constant
+
+```
+
+### Model Summary
+```{r}
+
+
+```
+
+```{r}
+# show mean of AveragePrice
+
+```
+
+
+## TotalVolume + Constant Term
+
+### Model
+```{r}
+# store model as model_volume
+
+```
+### Model Summary
+```{r}
+
+
+```
+
+### Plot of model
+
+We can plot the model using the fitted model points.
+
+```{r}
+# get model_volume$fitted.values store in fitted_values
+```
+
+```{r}
+plot(avocado_df$TotalVolume,avocado_df$AveragePrice, xlab= 'Total Volume', ylab = 'Average Price')
+lines(avocado_df$TotalVolume,fitted_values,col = 'blue')
+```
+
+
+We can plot the model using the coefficients of the model.
+
+```{r}
+# store coef(model_volume) as coefs
+# print 
+
+
+```
+
+```{r}
+plot(avocado_df$TotalVolume,avocado_df$AveragePrice, xlab= 'Total Volume', ylab = 'Average Price')
+abline(coefs[1],coefs[2], col='blue')
+```
+### Model Predictions
+
+```{r}
+unknown_df <- data.frame(TotalVolume=c(15.0,5.0))
+
+# print predict with model_volume
+
+
+```
+### Model Comparison
+
+```{r}
+# compare model_volume to model_constant
+
+
+```
+
+## Model with Price and Type 
+
+### Model
+```{r}
+# create model with type and volume
+
+
+```
+
+### Model Summary
+```{r}
+# print summary
+
+```
+
+### Plot Model
+
+```{r}
+# get and store coef(model_volume_type) as coefs
+# print coefs 
+
+
+```
+
+```{r}
+#create scatter plots
+plot(avocado_df$TotalVolume[avocado_df$Type=='organic'],avocado_df$AveragePrice[avocado_df$Type=='organic'], xlab= 'Total Volume', ylab = 'Average Price', col = 'black',xlim=c(4,19))
+points(avocado_df$TotalVolume[avocado_df$Type=='conventional'],avocado_df$AveragePrice[avocado_df$Type=='conventional'], xlab= 'Total Volume', ylab = 'Average Price', col = 'grey')
+
+#create lines
+abline(coefs[1]+coefs[3],coefs[2], col='red')
+abline(coefs[1],coefs[2], col='blue')
+
+legend(x=15,y=3,legend=c('Organic','Conventional','Predicted Organic','Predicted Conventional'),
+       col=c("black", "grey",'red','blue'),pch=c(1,1,NA,NA),lty=c(NA,NA,1,1), cex = 0.7)
+```
+
+### Model Predictions
+
+```{r}
+unknown_df <- data.frame(TotalVolume=c(15.0,5.0), Type = c("conventional","organic"))
+
+# print predict of unknown_df using model_volume_type
+
+
+```
+
+### Model Comparison
+
+```{r}
+# compare model_volume_type to model_constant
+
+
+```
+
+```{r}
+# compare model_volume_type to model_volume
+
+
+```
+
+## Model with Volume and Type Interaction
+
+### Model
+```{r}
+# create model TotalVolume:Type interaction term
+# print model summary
+
+
+```
+
+### Model Summary
+```{r}
+
+
+```
+
+### Model Alternative
+```{r}
+# create model with TotalVolume*Type
+
+```
+
+### Model Summary
+```{r}
+# print model summary
+
+```
+
+### Plot of Model
+```{r}
+#  sort coef in coefs and print
+
+
+
+```
+
+```{r}
+plot(avocado_df$TotalVolume[avocado_df$Type=='organic'],avocado_df$AveragePrice[avocado_df$Type=='organic'], xlab= 'Total Volume', ylab = 'Average Price', col = 'black',xlim=c(4,19))
+points(avocado_df$TotalVolume[avocado_df$Type=='conventional'],avocado_df$AveragePrice[avocado_df$Type=='conventional'], xlab= 'Total Volume', ylab = 'Average Price', col = 'grey')
+legend(x=15,y=3,legend=c('Organic','Conventional'),col=c("black", "grey"),pch=1)
+abline(coefs[1],coefs[2], col='blue')
+abline(coefs[1]+coefs[3],coefs[2]+coefs[4], col='red')
+```
+
+### Model Predictions
+
+```{r}
+unknown_df <- data.frame(TotalVolume=c(15.0,5.0), Type = c("conventional","organic"))
+# do predict(model_volume_type_interaction,unknown_df)
+
+
+```
+
+### Model Comparison
+
+```{r}
+
+# compare to model_volume_type_interaction to model_constant
+
+
+```
+
+```{r}
+# compare to model_volume_type_interaction to model_volume_type
+
+```
+
+
+## Model with Total Volume and Year
+```{r}
+# create model with TotalVolume and Year
+
+
+
+```

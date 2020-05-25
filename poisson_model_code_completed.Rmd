@@ -1,0 +1,93 @@
+---
+title: "Poisson Regression Code"
+output: html_document
+---
+
+# Load and Format data
+Here, we read and format data.
+```{r}
+library("pscl")
+bioChemists$kid5 <- factor(bioChemists$kid5)
+```
+
+# Summary of Data
+
+```{r}
+head(bioChemists)
+```
+
+```{r}
+summary(bioChemists)
+```
+
+# Poisson Regression in R
+
+## Constant Term
+
+We will now build a logistic model with a constant term and a TotalVolume term.
+
+```{r}
+model_constant <-glm(art ~ 1, data = bioChemists,family = poisson(link = log))
+```
+### Model Summary
+
+```{r}
+summary(model_constant)
+```
+
+You can also get the coefficents of the model.
+
+```{r}
+print(coef(model_constant))
+```
+
+## Model with Constant + Gender Term
+
+We will now build a Poisson model with a constant term and sex.
+
+```{r}
+model_sex <-glm(art ~ 1 + fem, data = bioChemists,family = poisson(link = log))
+```
+### Model Summary
+
+```{r}
+summary(model_sex)
+```
+## Model Comparison
+
+We can compare models using the anova function.
+
+```{r}
+anova(model_constant, model_sex, test='Chisq')
+```
+
+
+
+## Model with fem and ment 
+
+### Create Model
+```{r}
+model_sex_ment <- glm(art ~ 1 + fem + ment, data=bioChemists, family=poisson(link=log))
+```
+
+### Model Summary
+
+```{r}
+summary(model_sex_ment)
+```
+
+
+### Anova with null model
+
+```{r}
+anova(model_constant, model_sex_ment, test='Chisq')
+```
+
+### Anova with model with only sex
+
+```{r}
+anova(model_sex, model_sex_ment, test='Chisq')
+```
+
+
+

@@ -1,0 +1,152 @@
+---
+title: "linear_model_exercises"
+output: html_document
+---
+# Exercise 0:
+
+Load the library below.
+
+```{r}
+library(pscl)
+```
+## Exercise 1: Model with fem, ment_cat.
+
+As seen from the box plots in the presentation and below, the mean of the distributions for each ment might not be linear. 
+
+```{r}
+library(reshape2)
+```
+
+```{r}
+df.men <- melt(bioChemists[bioChemists$fem == "Men",c("ment","art")], id.var = "ment")
+
+ggplot(data = df.men, aes(x=ment, y=value)) +  geom_boxplot(aes(group=ment))
+```
+
+```{r}
+df.women <- melt(bioChemists[bioChemists$fem == "Women",c("ment","art")], id.var = "ment")
+ggplot(data = df.women, aes(x=ment, y=value)) +  geom_boxplot(aes(group=ment)) + ggtitle("Box plot of art vs ment for women")
+```
+
+0. It might be better to treat each ment numerical value as a category. Run the code below to create a new column with ment categories.
+
+```{r}
+#solution here
+
+bioChemists$ment_cat <- as.factor(bioChemists$ment)
+```
+
+1. Create a model with fem and ment_cat.
+
+```{r}
+#solution here
+
+model_sex_ment_cat <-glm(art ~ 1 + fem + ment_cat, data = bioChemists,family = poisson(link = log))
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+summary(model_sex_ment_cat)
+```
+
+3. Using ANOVA, compare this model to the model with only fem.
+
+```{r}
+#solution here
+
+model_sex <-glm(art ~ 1 + fem, data = bioChemists,family = poisson(link = log))
+anova(model_sex, model_sex_ment_cat, test='Chisq')
+```
+
+4. Is the model with ment_cat better than the model with ment?
+
+Not necessarily. While the model with sex and ment_cat has a lower deviance than the model sex and ment, the former uses much more degrees of freedom than the latter.
+
+## Exercise 2: Model with fem, ment interaction
+
+1. Run the code below to create a model with  fem and ment interaction.
+
+```{r}
+#solution here
+
+model_sex_ment_interaction <- glm(art ~ 1 + fem*ment, data=bioChemists, family=poisson(link=log))
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+summary(model_sex_ment_interaction)
+```
+
+3. Interpret the model.
+
+i) For men,
+  log(lambda) = 0.351 + 0.024*ment
+- log(lambda) = 0.351 when ment = 0
+- A 1 unit increase in ment causes 0.024 increase in lambda.
+
+ii) For women,
+  log(lambda) = 0.16 + 0.025*ment
+- log(lambda) = 0.16 when ment = 0
+- A 1 unit increase in ment causes 0.025 increase in lambda.
+
+
+4. Interpret the significance of effect of the interaction coefficient. 
+
+The interaction coefficient is statistically equivalent 0.
+
+5. Compare the model with ment and sex interaction to the model with no interaction between ment and sex. 
+```{r}
+#solution here
+
+anova(model_sex_ment, model_sex_ment_interaction, test='Chisq')
+```
+
+## Exercise 3: Model with fem, ment, phd
+
+1. Run the code below to create a model with  fem, ment and phd.
+
+```{r}
+#solution here
+
+model_sex_ment_phd <- glm(art ~ 1 + fem + ment + phd, data=bioChemists, family=poisson(link=log))
+```
+
+2. Print the summary of the model.
+
+```{r}
+#solution here
+
+summary(model_sex_ment_phd)
+```
+
+3. Interpret the model.
+
+i) For men,
+  log(lambda) = 0.351 + 0.024*ment + 0.011*phd
+- log(lambda) = 0.351 when ment = 0
+- A 1 unit increase in ment causes 0.024 increase in lambda, holding phd constant.
+- A 1 unit increase in ment causes 0.011 increase in lambda, holding ment constant.
+
+ii) For women,
+  log(lambda) = 0.16 + 0.025*ment + 0.011*phd
+- log(lambda) = 0.16 when ment = 0
+- A 1 unit increase in ment causes 0.025 increase in lambda, holding phd constant.
+- A 1 unit increase in ment causes 0.011 increase in lambda, holding ment constant.
+
+
+4. Interpret the significance of effect of the phd coefficient. 
+
+The phd coefficient is statistically equivalent 0.
+
+5. Compare the model with ment, sex and phd to the model with ment and sex only. 
+```{r}
+#solution here
+
+anova(model_sex_ment, model_sex_ment_phd, test='Chisq')
+```
