@@ -20,7 +20,6 @@ bioChemists$kid5 <- factor(bioChemists$kid5)
 ```{r}
 # print summary of dataset
 
-
 ```
 
 # Poisson Regression in R
@@ -49,6 +48,7 @@ You can also get the coefficents of the model.
 
 ```
 
+
 ## Model with Constant + Gender Term
 
 We will now build a Poisson model with a constant term and sex.
@@ -63,14 +63,15 @@ We will now build a Poisson model with a constant term and sex.
 ```{r}
 # print model summary
 
-
 ```
+
+
+
 ## Model Comparison
 
 We can compare models using the anova function.
 
 ```{r}
-
 # compare model_constant vs. model_sex
 
 
@@ -83,6 +84,7 @@ We can compare models using the anova function.
 ### Create Model
 ```{r}
 # poisson glm with fem, constant, ment family = poisson(link = log)) as model_sex_ment
+
 
 ```
 
@@ -99,13 +101,13 @@ We can compare models using the anova function.
 ```{r}
 
 # compare model_constant and model_sex_ment
+
 ```
 
 ### Anova with model with only sex
 
 ```{r}
 # compare model_sex and model_sex_ment
-
 
 ```
 
