@@ -4,7 +4,7 @@
 
 This workshop is part of the Data Science Workshops hosted by Research Computing Services at Northwestern University (2020).
 
-The purpose of the workshop is to introduce students in how to conduct statistical modeling with linear, logistic and Poisson regression.
+The purpose of the workshop is to introduce students to statistical modeling using linear, logistic and Poisson regression.
 
 Students are expected to have knowledge of R and regression analysis.
 
